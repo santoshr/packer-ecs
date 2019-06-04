@@ -3,7 +3,7 @@ set -e
 
 # Configure host to use timezone
 # http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html
-timezone=${TIME_ZONE:-America/Los_Angeles}
+timezone=${TIME_ZONE:-Europe/London}
 
 echo "### Setting timezone to $timezone ###"
 sudo tee /etc/sysconfig/clock << EOF > /dev/null
@@ -14,4 +14,5 @@ EOF
 sudo ln -sf /usr/share/zoneinfo/$timezone /etc/localtime
 
 # Enable NTP
-sudo chkconfig ntpd on
+echo "### enabling NTP ###"
+sudo chkconfig chronyd on
